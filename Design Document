@@ -33,17 +33,17 @@ TUAW-dataset/
     2. clean_posts.csv -> split into 11 *.txt files, 1 for each attribute
     We use title, category, post_txt, author for index construction.
     Reasons: a) URL data is subset of date + title
-            b) num_comments, num_inlinks, num_outlinks, post_length are metadata
+             b) num_comments, num_inlinks, num_outlinks, post_length are metadata
                 => they would not be known to user
-            c) user typically specifies date range separately
+             c) user typically specifies date range separately
     3. Get unique terms after tokenization, stopword removal & stemming
     4. For every unique term, find the posting list.
     5. Data Structure of posting list is { term (str) : [df (int) , { doc_id (int) : tf (int) } ] }
-    	i.e., a dictionary with the unique terms as its keys and its values as a pair of
-    		* document frequency of the term (df) &
-    		* a dictionary containing all the doc_ids of the documents containing the term as keys with
-    		  the term frequency (tf) of the term in the document with that doc_id as value.
-    		* doc_id of a document is the same as the line number of that post in "posts.csv"
+        i.e., a dictionary with the unique terms as its keys and its values as a pair of
+            a) document frequency of the term (df) &
+            b) a dictionary containing all the doc_ids of the documents containing the term as keys with
+              the term frequency (tf) of the term in the document with that doc_id as value.
+            c) doc_id of a document is the same as the line number of that post in "posts.csv"
     6. This is stored in the file "term.txt"
     7. When we search for a term in the query, we retrieve only the posting list of that term from disk.
        Therefore, we also save to disk the pair { term (str) , line number in 'term.txt" (int) } in the file 
@@ -51,18 +51,18 @@ TUAW-dataset/
 
 * Searching procedure *
 
-	1. Get search query & number of results to display (k) from user
-	2. Apply tokenization, stopword removal & stemming to the query
-	3. Retrieve the posting list of the query terms from "term.txt" using the line numbers stored in the file 
-	   "term_line_num.txt".
+    1. Get search query & number of results to display (k) from user
+    2. Apply tokenization, stopword removal & stemming to the query
+    3. Retrieve the posting list of the query terms from "term.txt" using the line numbers stored in the file 
+       "term_line_num.txt".
     * Scoring procedure *
         * We use two parameters to calculate the score of a document
-            b) fraction of inlinks to the document
-            a) cosine similarity of the document vector with the query vector (ddd.qqq = lnc.ltc)
+            a) fraction of inlinks to the document
+            b) cosine similarity of the document vector with the query vector (ddd.qqq = lnc.ltc)
         * The relative importance of these two weights is controlled by a parameter alpha which is set to 0.5
         * final score = alpha * fraction of inlinks + (1 - alpha) * cosine similarity
-	4. Find the ranking using the scoring procedure
-	5. Display the top k results
+    4. Find the ranking using the scoring procedure
+    5. Display the top k results
 
 * Recall *
 

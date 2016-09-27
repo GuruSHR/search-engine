@@ -1,11 +1,10 @@
 IR Project - ranked retrieval using vector space model
 ------------------------------------------------------
 Author: Hariram S
-ID: 2013B5A7655H
 Date: 2016-09-27
 Version: 1.0.0
 Dataset: TUAW - Social Computing Data Repository
-		 source: http://socialcomputing.asu.edu/datasets/TUAW
+         source: http://socialcomputing.asu.edu/datasets/TUAW
 
 Requirements
 ------------
