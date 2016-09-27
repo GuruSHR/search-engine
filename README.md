@@ -18,7 +18,7 @@ Tested using:
 
 ##Usage
 
-1. Run "2to3 porterstemmer.py" to make the stemmer compatible with 
+1. Run `2to3 porterstemmer.py` to make the stemmer compatible with 
    python 3 (if not done already)
-2. Run "build_index.py" to construct an inverted index from the data.
-3. Run "search.py "your query" [ k ]" to get top k results (default k = 10).
+2. Run `build_index.py` to construct an inverted index from the data.
+3. Run `search.py "your query" [ k ]` to get top `k` results (default `k = 10`).
